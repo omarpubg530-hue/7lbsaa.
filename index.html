@@ -31,7 +31,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -276,11 +276,36 @@
             font-weight: 500;
         }
 
+        /* تصميم الكروت المحسن للاستجابة */
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
             margin-bottom: 60px;
+        }
+
+        /* للشاشات الصغيرة جداً */
+        @media (max-width: 480px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* للشاشات المتوسطة */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px;
+            }
+        }
+
+        /* للشاشات الكبيرة */
+        @media (min-width: 1025px) {
+            .cards-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
         }
 
         .card {
@@ -294,6 +319,9 @@
             position: relative;
             border: 2px solid rgba(255, 255, 255, 0.5);
             cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .card::before {
@@ -334,9 +362,10 @@
 
         .card-image {
             width: 100%;
-            height: 320px;
+            height: 250px;
             object-fit: cover;
             transition: transform 0.6s ease;
+            flex-shrink: 0;
         }
 
         .card:hover .card-image {
@@ -344,9 +373,13 @@
         }
 
         .card-content {
-            padding: 35px;
+            padding: 30px 25px;
             text-align: center;
             background: linear-gradient(180deg, transparent, rgba(255,255,255,0.9));
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card-content h2 {
@@ -354,32 +387,34 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 2.2em;
-            margin-bottom: 18px;
+            font-size: 1.8em;
+            margin-bottom: 15px;
             font-weight: bold;
         }
 
         .card-content p {
             color: #555;
-            font-size: 1.1em;
-            line-height: 1.9;
-            margin-bottom: 28px;
+            font-size: 1em;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
         .card-button {
             display: inline-block;
-            padding: 18px 45px;
+            padding: 15px 35px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: bold;
             transition: all 0.4s ease;
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            margin-top: auto;
         }
 
         .card-button::before {
@@ -516,17 +551,67 @@
             }
         }
 
+        /* تحسينات الاستجابة للهواتف */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2em;
+            body {
+                padding: 10px;
             }
 
-            .cards-container {
-                grid-template-columns: 1fr;
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .search-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .search-icon svg {
+                width: 35px;
+                height: 35px;
+            }
+
+            .card-content {
+                padding: 25px 20px;
             }
 
             .card-content h2 {
-                font-size: 1.7em;
+                font-size: 1.6em;
+            }
+
+            .card-content p {
+                font-size: 0.95em;
+            }
+
+            .card-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+                letter-spacing: 1px;
+            }
+
+            .search-container {
+                max-width: 100%;
+            }
+
+            .search-input {
+                font-size: 1em;
+                padding: 15px 60px 15px 25px;
+            }
+
+            .search-button {
+                width: 45px;
+                height: 45px;
+            }
+
+            .search-button svg {
+                width: 20px;
+                height: 20px;
             }
         }
     </style>
@@ -550,7 +635,7 @@
 
                 <div class="search-box" id="searchBox">
                     <div class="search-input-container">
-                        <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن الأكلات أو التمبلتات...">
+                        <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن الأكلات أو التمبلتات أو المدرسين...">
                         <button class="search-button" id="searchButton">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -564,11 +649,11 @@
 
         <div class="no-results" id="noResults">
             <p>🔍 لم يتم العثور على نتائج</p>
-            <p style="font-size: 0.8em;">جرب البحث عن "أكلات" أو "تمبلتات"</p>
+            <p style="font-size: 0.8em;">جرب البحث عن "أكلات" أو "تمبلتات" أو "مدرسين"</p>
         </div>
 
         <div class="cards-container">
-            <div class="card" data-category="أكلات طبخ مصرية كشري محشي ملوخية فتة طعام">
+            <div class="card" data-category="أكلات طبخ مصرية كشري محشي ملوخية فتة طعام مطبخ وصفات">
                 <img src="https://i.pinimg.com/736x/31/f0/64/31f064fe9533d5921ee7801b79f6af8a.jpg" alt="أكلات مصرية" class="card-image">
                 <div class="card-content">
                     <h2>🍽️ الأكلات المصرية</h2>
@@ -577,12 +662,21 @@
                 </div>
             </div>
 
-            <div class="card" data-category="تمبلتات ميمز تمبلت ميم صور مضحكة كوميدية نكت">
+            <div class="card" data-category="تمبلتات ميمز تمبلت ميم صور مضحكة كوميدية نكت فكاهة ساخر">
                 <img src="https://scontent.fcai19-7.fna.fbcdn.net/v/t39.30808-6/537964141_741595525371729_7877327271708443753_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=nRWqUxkXmrMQ7kNvwG3A-oW&_nc_oc=AdkqWtyOYAFUxqWmcCOOISOze6YqBMzzjzS3sK8XnESdJv9E4P67-JGQnoOmQrsh4MQ&_nc_zt=23&_nc_ht=scontent.fcai19-7.fna&_nc_gid=Ja3zQg1cnxYcCA4UmOFA7w&oh=00_AffG5AS6P0kyneFgDLQhDlBB6u-RjAOpr1y5ymvGtXCsQA&oe=69093E7E" alt="تمبلتات وميمز" class="card-image">
                 <div class="card-content">
                     <h2>😂 التمبلتات والميمز</h2>
                     <p>مجموعة مضحكة ومميزة من التمبلتات والميمز المصرية الكوميدية. استمتع بأحدث الميمز والصور المضحكة التي تعبر عن الحياة اليومية بطريقة كوميدية ومسلية!</p>
                     <a href="https://omarpubg530-hue.github.io/memes/" class="card-button">موقع التمبلتات 🎭</a>
+                </div>
+            </div>
+
+            <div class="card" data-category="مدرسين الثانوية العامة تعليمية دراسية مدرسين مدرسة دروس منهج امتحانات">
+                <img src="https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/275476412_3121539121495777_8870912263884933389_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=RrKiDHyFf98Q7kNvwGPnaxb&_nc_oc=AdnzD7jfvnuyXe4cMak5KCDvgRHcFxu0UZYNisSF2Neb2PYhM7uynzLYK9gmJ5qgCmw&_nc_zt=23&_nc_ht=scontent.fcai19-4.fna&_nc_gid=v2Q_IwrSQmP74mIcwb3mAQ&oh=00_AfcgSUv7H-HAAGrVBgEf4dDOKWWzly36eu2uAjT5kIRTiQ&oe=690AE342" alt="مدرسين الثانوية العامة" class="card-image">
+                <div class="card-content">
+                    <h2>👨‍🏫 مدرسين الثانوية العامة</h2>
+                    <p>مجموعة شاملة من أفضل مدرسين الثانوية العامة مع شرح مبسط للمنهج وأسئلة امتحانات سابقة. احصل على أفضل الشروحات والنصائح للنجاح في امتحانات الثانوية العامة.</p>
+                    <a href="https://omarpubg530-hue.github.io/7lbsaateachers/" class="card-button">موقع المدرسين 🎓</a>
                 </div>
             </div>
         </div>
@@ -676,7 +770,7 @@
             canvas.height = window.innerHeight;
         });
 
-        // ====== نظام البحث ======
+        // ====== نظام البحث المحسن ======
         const searchIcon = document.getElementById('searchIcon');
         const searchBox = document.getElementById('searchBox');
         const searchInput = document.getElementById('searchInput');
@@ -701,20 +795,22 @@
             if (searchTerm === '') {
                 cards.forEach(card => {
                     card.classList.remove('hidden');
-                    card.style.display = 'block';
+                    card.style.display = 'flex';
                 });
                 return;
             }
 
             let foundResults = false;
+            const foundCards = [];
 
             cards.forEach(card => {
                 const category = card.getAttribute('data-category').toLowerCase();
                 
                 if (category.includes(searchTerm)) {
                     card.classList.remove('hidden');
-                    card.style.display = 'block';
+                    card.style.display = 'flex';
                     foundResults = true;
+                    foundCards.push(card);
                 } else {
                     card.classList.add('hidden');
                     card.style.display = 'none';
@@ -722,22 +818,28 @@
             });
 
             if (foundResults) {
-                const resultText = searchTerm.includes('أكلات') || searchTerm.includes('طبخ') || searchTerm.includes('كشري') || searchTerm.includes('محشي') || searchTerm.includes('ملوخية') || searchTerm.includes('فتة') || searchTerm.includes('طعام') || searchTerm.includes('مصرية')
-                    ? '🍽️ تم العثور على: موقع الأكلات المصرية'
-                    : '😂 تم العثور على: موقع التمبلتات والميمز';
+                let resultText = '';
+                if (searchTerm.includes('أكلات') || searchTerm.includes('طبخ') || searchTerm.includes('كشري') || searchTerm.includes('محشي') || searchTerm.includes('ملوخية') || searchTerm.includes('فتة') || searchTerm.includes('طعام') || searchTerm.includes('مصرية') || searchTerm.includes('مطبخ') || searchTerm.includes('وصفات')) {
+                    resultText = '🍽️ تم العثور على: موقع الأكلات المصرية';
+                } else if (searchTerm.includes('تمبلتات') || searchTerm.includes('ميمز') || searchTerm.includes('ميم') || searchTerm.includes('صور') || searchTerm.includes('مضحكة') || searchTerm.includes('كوميدية') || searchTerm.includes('نكت') || searchTerm.includes('فكاهة') || searchTerm.includes('ساخر')) {
+                    resultText = '😂 تم العثور على: موقع التمبلتات والميمز';
+                } else if (searchTerm.includes('مدرسين') || searchTerm.includes('ثانوية') || searchTerm.includes('تعليمية') || searchTerm.includes('دراسية') || searchTerm.includes('مدرسة') || searchTerm.includes('دروس') || searchTerm.includes('منهج') || searchTerm.includes('امتحانات')) {
+                    resultText = '🎓 تم العثور على: موقع مدرسين الثانوية العامة';
+                }
                 
-                searchResults.innerHTML = `<p style="color: #667eea; font-weight: bold; font-size: 1.2em;">${resultText}</p>`;
-                searchResults.classList.add('show');
+                if (resultText) {
+                    searchResults.innerHTML = `<p style="color: #667eea; font-weight: bold; font-size: 1.2em;">${resultText}</p>`;
+                    searchResults.classList.add('show');
+                }
 
                 setTimeout(() => {
-                    const visibleCard = document.querySelector('.card:not(.hidden)');
-                    if (visibleCard) {
-                        visibleCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    if (foundCards.length > 0) {
+                        foundCards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
                 }, 300);
             } else {
                 noResults.classList.add('show');
-                searchResults.innerHTML = '<p style="color: #ff6b6b; font-weight: bold;">⚠️ لم يتم العثور على نتائج. حاول البحث عن "أكلات" أو "تمبلتات"</p>';
+                searchResults.innerHTML = '<p style="color: #ff6b6b; font-weight: bold;">⚠️ لم يتم العثور على نتائج. حاول البحث عن "أكلات" أو "تمبلتات" أو "مدرسين"</p>';
                 searchResults.classList.add('show');
             }
         }
