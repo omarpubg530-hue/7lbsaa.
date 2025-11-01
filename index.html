@@ -635,7 +635,7 @@
 
                 <div class="search-box" id="searchBox">
                     <div class="search-input-container">
-                        <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن الأكلات أو التمبلتات أو المدرسين...">
+                        <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن الأكلات أو التمبلتات أو المدرسين أو المتحف...">
                         <button class="search-button" id="searchButton">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -649,7 +649,7 @@
 
         <div class="no-results" id="noResults">
             <p>🔍 لم يتم العثور على نتائج</p>
-            <p style="font-size: 0.8em;">جرب البحث عن "أكلات" أو "تمبلتات" أو "مدرسين"</p>
+            <p style="font-size: 0.8em;">جرب البحث عن "أكلات" أو "تمبلتات" أو "مدرسين" أو "متحف"</p>
         </div>
 
         <div class="cards-container">
@@ -677,6 +677,15 @@
                     <h2>👨‍🏫 مدرسين الثانوية العامة</h2>
                     <p>مجموعة شاملة من أفضل مدرسين الثانوية العامة مع شرح مبسط للمنهج وأسئلة امتحانات سابقة. احصل على أفضل الشروحات والنصائح للنجاح في امتحانات الثانوية العامة.</p>
                     <a href="https://omarpubg530-hue.github.io/7lbsaateachers/" class="card-button">موقع المدرسين 🎓</a>
+                </div>
+            </div>
+
+            <div class="card" data-category="متحف مصري كبير آثار فرعونية تاريخ توت عنخ آمون حضارة أهرامات سياحة ثقافة">
+                <img src="https://www.visit-gem.com/assets/img/logo.png" alt="المتحف المصري الكبير" class="card-image" style="object-fit: contain; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 20px;">
+                <div class="card-content">
+                    <h2>🏛️ تعرف على المتحف المصري الكبير</h2>
+                    <p>اكتشف أعظم متحف أثري في العالم! استكشف كنوز الحضارة المصرية القديمة، من مقتنيات توت عنخ آمون الذهبية إلى التماثيل الفرعونية الضخمة. رحلة عبر 7000 سنة من التاريخ!</p>
+                    <a href="https://omarpubg530-hue.github.io/7lbsaa.GrandEgyptianMuseum/" class="card-button">زيارة المتحف 🏺</a>
                 </div>
             </div>
         </div>
@@ -825,6 +834,8 @@
                     resultText = '😂 تم العثور على: موقع التمبلتات والميمز';
                 } else if (searchTerm.includes('مدرسين') || searchTerm.includes('ثانوية') || searchTerm.includes('تعليمية') || searchTerm.includes('دراسية') || searchTerm.includes('مدرسة') || searchTerm.includes('دروس') || searchTerm.includes('منهج') || searchTerm.includes('امتحانات')) {
                     resultText = '🎓 تم العثور على: موقع مدرسين الثانوية العامة';
+                } else if (searchTerm.includes('متحف') || searchTerm.includes('مصري') || searchTerm.includes('كبير') || searchTerm.includes('آثار') || searchTerm.includes('فرعونية') || searchTerm.includes('تاريخ') || searchTerm.includes('توت') || searchTerm.includes('حضارة') || searchTerm.includes('أهرامات')) {
+                    resultText = '🏛️ تم العثور على: المتحف المصري الكبير';
                 }
                 
                 if (resultText) {
@@ -839,7 +850,7 @@
                 }, 300);
             } else {
                 noResults.classList.add('show');
-                searchResults.innerHTML = '<p style="color: #ff6b6b; font-weight: bold;">⚠️ لم يتم العثور على نتائج. حاول البحث عن "أكلات" أو "تمبلتات" أو "مدرسين"</p>';
+                searchResults.innerHTML = '<p style="color: #ff6b6b; font-weight: bold;">⚠️ لم يتم العثور على نتائج. حاول البحث عن "أكلات" أو "تمبلتات" أو "مدرسين" أو "متحف"</p>';
                 searchResults.classList.add('show');
             }
         }
