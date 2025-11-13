@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6258e6 0%, #1c34bb 100%);
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
@@ -79,24 +79,32 @@
         .contact-btn {
             display: inline-block;
             margin: 15px 0;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #8a4e4e 0%, rgb(189, 20, 20) 100%);
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 5px 25px rgba(255, 111, 97, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: pulse-btn 2s ease-in-out infinite;
         }
 
         .contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2));
-            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 35px rgba(255, 111, 97, 0.7);
+            background: linear-gradient(135deg, #ff766a 0%, #ff4e53 100%);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes pulse-btn {
+            0%, 100% { box-shadow: 0 5px 25px rgba(255, 111, 97, 0.5); }
+            50% { box-shadow: 0 5px 35px rgba(170, 47, 36, 0.8); }
         }
 
         @keyframes shimmer {
@@ -332,19 +340,19 @@
         }
 
         .card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 15px 50px rgba(0,0,0,0.4);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 215, 125, 0.5);
             cursor: pointer;
             height: 100%;
             display: flex;
             flex-direction: column;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .card::before {
@@ -363,19 +371,8 @@
             transform: translateX(100%);
         }
 
-        .card.animate {
-            animation: fadeInUp 1s ease forwards;
-        }
-
         .card.hidden {
             display: none;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .card:hover {
@@ -426,14 +423,14 @@
         .card-button {
             display: inline-block;
             padding: 15px 35px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #160164 0%, #1216f3 100%);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-size: 1.1em;
             font-weight: bold;
             transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 111, 97, 0.5);
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -500,6 +497,13 @@
             to { opacity: 1; transform: scale(1); }
         }
 
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .star {
             position: fixed;
             width: 3px;
@@ -537,16 +541,18 @@
         /* تحسينات الاستجابة للهواتف */
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 15px;
+                font-size: 16px;
             }
 
             header h1 {
-                font-size: 2.5em;
+                font-size: 2.8em;
+                margin-bottom: 15px;
             }
 
             .contact-btn {
-                padding: 10px 25px;
-                font-size: 1em;
+                padding: 12px 30px;
+                font-size: 1.2em;
             }
 
             .search-icon {
@@ -557,6 +563,20 @@
             .search-icon svg {
                 width: 35px;
                 height: 35px;
+            }
+
+            .search-container {
+                max-width: 100%;
+                margin: 20px auto;
+            }
+
+            .search-input {
+                font-size: 1.1em;
+                padding: 15px 60px 15px 25px;
+            }
+
+            .cards-container {
+                gap: 25px;
             }
 
             .card-content {
@@ -579,12 +599,13 @@
 
         @media (max-width: 480px) {
             header h1 {
-                font-size: 2em;
+                font-size: 2.2em;
                 letter-spacing: 1px;
             }
 
-            .search-container {
-                max-width: 100%;
+            .contact-btn {
+                padding: 10px 25px;
+                font-size: 1.1em;
             }
 
             .search-input {
@@ -625,7 +646,7 @@
 
                 <div class="search-box" id="searchBox">
                     <div class="search-input-container">
-                        <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن الأكلات أو التمبلتات أو المدرسين أو المتحف...">
+                        <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن التمبلتات أو المدرسين أو الخلفيات...">
                         <button class="search-button" id="searchButton">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -639,19 +660,10 @@
 
         <div class="no-results" id="noResults">
             <p>🔍 لم يتم العثور على نتائج</p>
-            <p style="font-size: 0.8em;">جرب البحث عن "أكلات" أو "تمبلتات" أو "مدرسين" أو "متحف"</p>
+            <p style="font-size: 0.8em;">جرب البحث عن "تمبلتات" أو "مدرسين" أو "خلفيات"</p>
         </div>
 
         <div class="cards-container">
-            <div class="card" data-category="أكلات طبخ مصرية كشري محشي ملوخية فتة طعام مطبخ وصفات">
-                <img src="https://i.pinimg.com/736x/31/f0/64/31f064fe9533d5921ee7801b79f6af8a.jpg" alt="أكلات مصرية" class="card-image">
-                <div class="card-content">
-                    <h2> الأكلات المصرية</h2>
-                    <p>اكتشف أشهى الأكلات المصرية التقليدية مع مقاديرها الكاملة وطريقة تحضيرها خطوة بخطوة. من الكشري والمحشي إلى الملوخية والفتة، كل ما تحتاجه لإعداد أطباق مصرية أصيلة!</p>
-                    <a href="https://omarpubg530-hue.github.io/omareat1/" class="card-button">موقع الطبخ 🍽️ </a>
-                </div>
-            </div>
-
             <div class="card" data-category="تمبلتات ميمز تمبلت ميم صور مضحكة كوميدية نكت فكاهة ساخر">
                 <img src="https://scontent.fcai19-4.fna.fbcdn.net/v/t1.15752-9/578718717_1542292106967401_2827635564588688765_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=0024fc&_nc_ohc=4scib9nRhucQ7kNvwGDqWkq&_nc_oc=AdkZLG30fPm7hnQ4QmmvojCwlZP5aX-a8Dr09jYFBWvtoYpIxFJjtuaG7zBwVF3nqWE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fcai19-4.fna&oh=03_Q7cD3wGvgLeiKYdsq-0NRzFzo5N7QisdCwmEjJnY41nAbXJ4zw&oe=693995AE" alt="تمبلتات وميمز" class="card-image">
                 <div class="card-content">
@@ -670,12 +682,12 @@
                 </div>
             </div>
 
-            <div class="card" data-category="متحف مصري كبير آثار فرعونية تاريخ توت عنخ آمون حضارة أهرامات سياحة ثقافة">
-                <img src="https://www.visit-gem.com/assets/img/logo.png" alt="المتحف المصري الكبير" class="card-image" style="object-fit: contain; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 20px;">
+            <div class="card" data-category="خلفيات موبايل محاكي صور خلفية wallpapers">
+                <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t1.15752-9/528035703_4185978934968651_614432039096875556_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_ohc=r9AxYlFbtEgQ7kNvwGdDIVP&_nc_oc=Adk-GcZ5WYaNFonrYV6kEN78UnRso1FR-n0bAG5VEQdWxPnzumrqJuL-BpbtYpX4bS4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&oh=03_Q7cD3wGc_WkjwDRWVPVT4K0QtN00EnV3ZeviVHVCFNU_Pd2lYg&oe=693CC149" alt="خلفيات للموبايل والمحاكي" class="card-image">
                 <div class="card-content">
-                    <h2>🏛️ تعرف على المتحف المصري الكبير</h2>
-                    <p>اكتشف أعظم متحف أثري في العالم! استكشف كنوز الحضارة المصرية القديمة، من مقتنيات توت عنخ آمون الذهبية إلى التماثيل الفرعونية الضخمة. رحلة عبر 7000 سنة من التاريخ!</p>
-                    <a href="https://omarpubg530-hue.github.io/7lbsaa.GrandEgyptianMuseum/" class="card-button">زيارة المتحف 🏺</a>
+                    <h2>خلفيات للموبايل والمحاكي</h2>
+                    <p>مجموعة رائعة من الخلفيات المميزة للموبايل والمحاكي. اختر الخلفية المناسبة لجهازك واستمتع بتصميمات جذابة وفريدة!</p>
+                    <a href="https://omarpubg530-hue.github.io/7lbsaa.wallpapers/" class="card-button">زيارة الموقع 📱</a>
                 </div>
             </div>
         </div>
@@ -813,14 +825,12 @@
 
             if (foundResults) {
                 let resultText = '';
-                if (searchTerm.includes('أكلات') || searchTerm.includes('طبخ') || searchTerm.includes('كشري') || searchTerm.includes('محشي') || searchTerm.includes('ملوخية') || searchTerm.includes('فتة') || searchTerm.includes('طعام') || searchTerm.includes('مصرية') || searchTerm.includes('مطبخ') || searchTerm.includes('وصفات')) {
-                    resultText = '🍽️ تم العثور على: موقع الأكلات المصرية';
-                } else if (searchTerm.includes('تمبلتات') || searchTerm.includes('ميمز') || searchTerm.includes('ميم') || searchTerm.includes('صور') || searchTerm.includes('مضحكة') || searchTerm.includes('كوميدية') || searchTerm.includes('نكت') || searchTerm.includes('فكاهة') || searchTerm.includes('ساخر')) {
+                if (searchTerm.includes('تمبلتات') || searchTerm.includes('ميمز') || searchTerm.includes('ميم') || searchTerm.includes('صور') || searchTerm.includes('مضحكة') || searchTerm.includes('كوميدية') || searchTerm.includes('نكت') || searchTerm.includes('فكاهة') || searchTerm.includes('ساخر')) {
                     resultText = '😂 تم العثور على: موقع التمبلتات والميمز';
                 } else if (searchTerm.includes('مدرسين') || searchTerm.includes('ثانوية') || searchTerm.includes('تعليمية') || searchTerm.includes('دراسية') || searchTerm.includes('مدرسة') || searchTerm.includes('دروس') || searchTerm.includes('منهج') || searchTerm.includes('امتحانات')) {
                     resultText = '🎓 تم العثور على: موقع مدرسين الثانوية العامة';
-                } else if (searchTerm.includes('متحف') || searchTerm.includes('مصري') || searchTerm.includes('كبير') || searchTerm.includes('آثار') || searchTerm.includes('فرعونية') || searchTerm.includes('تاريخ') || searchTerm.includes('توت') || searchTerm.includes('حضارة') || searchTerm.includes('أهرامات')) {
-                    resultText = '🏛️ تم العثور على: المتحف المصري الكبير';
+                } else if (searchTerm.includes('خلفيات') || searchTerm.includes('موبايل') || searchTerm.includes('محاكي') || searchTerm.includes('صور') || searchTerm.includes('خلفية') || searchTerm.includes('wallpapers')) {
+                    resultText = '📱 تم العثور على: خلفيات للموبايل والمحاكي';
                 }
                 
                 if (resultText) {
@@ -835,7 +845,7 @@
                 }, 300);
             } else {
                 noResults.classList.add('show');
-                searchResults.innerHTML = '<p style="color: #ff6b6b; font-weight: bold;">⚠️ لم يتم العثور على نتائج. حاول البحث عن "أكلات" أو "تمبلتات" أو "مدرسين" أو "متحف"</p>';
+                searchResults.innerHTML = '<p style="color: #ff6b6b; font-weight: bold;">⚠️ لم يتم العثور على نتائج. حاول البحث عن "تمبلتات" أو "مدرسين" أو "خلفيات"</p>';
                 searchResults.classList.add('show');
             }
         }
@@ -866,21 +876,6 @@
                 setTimeout(() => ripple.remove(), 600);
             });
         });
-
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        cards.forEach(card => observer.observe(card));
 
         function createStar() {
             const star = document.createElement('div');
